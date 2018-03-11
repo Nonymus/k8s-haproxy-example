@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: haproxy-test
+spec:
+  selector:
+    app: haproxy
+  ports:
+    - protocol: TCP
+      port: 80
+      name: http
+  type: NodePort

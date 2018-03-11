@@ -1,0 +1,25 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: haproxy-test
+  labels:
+    app: haproxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: haproxy
+  template:
+    metadata:
+      labels:
+        app: haproxy
+    spec:
+      containers:
+        - name: haproxy
+          image: nonymus/haproxy
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+        - name: syslog
+          image: nonymus/syslog
+          imagePullPolicy: IfNotPresent
